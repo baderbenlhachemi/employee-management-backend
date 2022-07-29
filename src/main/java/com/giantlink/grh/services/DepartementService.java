@@ -1,6 +1,7 @@
 package com.giantlink.grh.services;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 import com.giantlink.grh.entities.Departement;
 
@@ -9,9 +10,9 @@ public interface DepartementService {
 
 	Departement get(Integer id);
 
-	Departement get(String name);
+	Optional<Departement> get(String name);
 
-	Set<Departement> get();
+	List<Departement> get();
 	
 	void delete(Integer id);
 }

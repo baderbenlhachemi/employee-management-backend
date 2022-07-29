@@ -38,11 +38,12 @@ public class CompanyEntity {
 	private String name;
 
 	@ManyToOne
+	@JsonBackReference(value = "company-companyEntity")
 	@JoinColumn(name = "company_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonBackReference
 	private Company company;
 
 	@OneToMany(mappedBy = "companyEntity", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "companyEntity-department")
 	private Set<Departement> departements;
 }

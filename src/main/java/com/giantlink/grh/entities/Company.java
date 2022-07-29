@@ -29,7 +29,7 @@ public class Company {
 	private String email;
 	private String address;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+	@JsonManagedReference(value = "company-companyEntity")
 	private Set<CompanyEntity> entities;
 }

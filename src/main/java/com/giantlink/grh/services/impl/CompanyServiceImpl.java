@@ -1,7 +1,6 @@
 package com.giantlink.grh.services.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +11,12 @@ import com.giantlink.grh.services.CompanyService;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
+	private final CompanyRepository companyRepository;
+
 	@Autowired
-	private CompanyRepository companyRepository;
+	public CompanyServiceImpl(CompanyRepository companyRepository) {
+		this.companyRepository = companyRepository;
+	}
 
 	@Override
 	public Company add(Company company) {
@@ -28,6 +31,11 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public List<Company> get() {
 		return companyRepository.findAll();
+	}
+
+	@Override
+	public void delete(Integer id) {
+		companyRepository.deleteById(id);
 	}
 
 }
