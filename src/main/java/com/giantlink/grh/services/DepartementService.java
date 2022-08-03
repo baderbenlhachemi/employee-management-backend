@@ -3,18 +3,20 @@ package com.giantlink.grh.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.giantlink.grh.dto.request.DepartementRequest;
+import com.giantlink.grh.dto.response.DepartementResponse;
 import com.giantlink.grh.entities.Departement;
 
 public interface DepartementService {
-	Departement add(Departement departement);
+	DepartementResponse add(DepartementRequest departementRequest);
 
-	Departement update(Integer id, Departement departement);
+	DepartementResponse update(Integer id, DepartementRequest departementRequest);
 
-	Departement get(Integer id);
+	DepartementResponse get(Integer id);
 
-	Optional<Departement> get(String name);
+	Optional<DepartementResponse> get(String name);
 
-	List<Departement> get();
+	List<DepartementResponse> get();
 	
 	void delete(Integer id);
 }

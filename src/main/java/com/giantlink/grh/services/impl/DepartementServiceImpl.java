@@ -3,6 +3,9 @@ package com.giantlink.grh.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.giantlink.grh.dto.mapper.DepartementMapper;
+import com.giantlink.grh.dto.request.DepartementRequest;
+import com.giantlink.grh.dto.response.DepartementResponse;
 import com.giantlink.grh.entities.Departement;
 import com.giantlink.grh.repositories.DepartementRepository;
 import com.giantlink.grh.services.DepartementService;
@@ -20,38 +23,41 @@ public class DepartementServiceImpl implements DepartementService {
 	}
 
 	@Override
-	public Departement add(Departement departement) {
-		// TODO Auto-generated method stub
-		return departementRepository.save(departement);
+	public DepartementResponse add(DepartementRequest departementRequest) {
+		Departement departement = DepartementMapper.MAPPER.fromRequestToEntity(departementRequest);
+		departementRepository.save(departement);
+		return DepartementMapper.MAPPER.fromEntityToResponse(departement);
 	}
 
 	@Override
-	public Departement update(Integer id, Departement departement) {
-		return departementRepository.save(departement);
+	public DepartementResponse update(Integer id, DepartementRequest departementRequest) {
+		Departement departement = DepartementMapper.MAPPER.fromRequestToEntity(departementRequest);
+		departement.setId(id);
+		departementRepository.save(departement);
+		return DepartementMapper.MAPPER.fromEntityToResponse(departement);
 	}
 
 	@Override
-	public Departement get(Integer id) {
-		// TODO Auto-generated method stub
-		return departementRepository.findById(id).get();
+	public DepartementResponse get(Integer id) {
+		Optional<Departement> departement = departementRepository.findById(id);
+		return DepartementMapper.MAPPER.fromEntityToResponse(departement.get());
 	}
 
 	@Override
-	public Optional<Departement> get(String name) {
-		// TODO Auto-generated method stub
-		return departementRepository.findByName(name);
+	public Optional<DepartementResponse> get(String name) {
+		Optional<Departement> departement = departementRepository.findByName(name);
+		return Optional.ofNullable(DepartementMapper.MAPPER.fromEntityToResponse(departement.get()));
 	}
 
 	@Override
-	public List<Departement> get() {
-		// TODO Auto-generated method stub
-		return departementRepository.findAll();
+	public List<DepartementResponse> get() {
+		List<Departement> departement = departementRepository.findAll();
+		return DepartementMapper.MAPPER.fromEntityListToResponse(departement);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-
+		departementRepository.deleteById(id);
 	}
 
 }

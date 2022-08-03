@@ -13,10 +13,10 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyRequest {
-    @NotNull(message = "Company name is required")
+    @NotNull
     private String name;
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
     private String email;
-    @NotNull(message = "Company address is required")
+    @NotNull
     private String address;
 }

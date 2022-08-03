@@ -1,5 +1,7 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.DepartementRequest;
+import com.giantlink.grh.dto.response.DepartementResponse;
 import com.giantlink.grh.entities.Departement;
 import com.giantlink.grh.services.DepartementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +21,23 @@ public class DepartementController {
     }
 
     @GetMapping("")
-    public List<Departement> get() {
+    public List<DepartementResponse> get() {
         return departementService.get();
     }
 
     @GetMapping("/get/{id}")
-    public Departement get(@PathVariable Integer id) {
+    public DepartementResponse get(@PathVariable Integer id) {
         return departementService.get(id);
     }
 
     @PostMapping("/add")
-    public Departement add(@RequestBody Departement departement) {
-        return departementService.add(departement);
+    public DepartementResponse add(@RequestBody DepartementRequest departementRequest) {
+        return departementService.add(departementRequest);
     }
 
     @PutMapping("/update/{id}")
-    public Departement update(@PathVariable Integer id, @RequestBody Departement departement) {
-        departement.setId(id);
-        return departementService.update(id, departement);
+    public DepartementResponse update(@PathVariable Integer id, @RequestBody DepartementRequest departementRequest) {
+        return departementService.update(id, departementRequest);
     }
 
     @DeleteMapping("/delete/{id}")
