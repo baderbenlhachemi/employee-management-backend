@@ -1,5 +1,7 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.CompanyEntityRequest;
+import com.giantlink.grh.dto.response.CompanyEntityResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,24 +24,23 @@ public class CompanyEntityController {
 	}
 
 	@GetMapping("")
-	public ResponseEntity<List<CompanyEntity>> get() {
-		return new ResponseEntity<List<CompanyEntity>>(companyEntityService.get(), HttpStatus.OK);
+	public ResponseEntity<List<CompanyEntityResponse>> get() {
+		return new ResponseEntity<List<CompanyEntityResponse>>(companyEntityService.get(), HttpStatus.OK);
 	}
 
 	@GetMapping("/get/{id}")
-	public ResponseEntity<CompanyEntity> get(@PathVariable Integer id) {
-		return new ResponseEntity<CompanyEntity>(companyEntityService.get(id), HttpStatus.OK);
+	public ResponseEntity<CompanyEntityResponse> get(@PathVariable Integer id) {
+		return new ResponseEntity<CompanyEntityResponse>(companyEntityService.get(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<CompanyEntity> add(@RequestBody CompanyEntity companyEntity) {
-		return new ResponseEntity<CompanyEntity>(companyEntityService.add(companyEntity), HttpStatus.CREATED);
+	public ResponseEntity<CompanyEntityResponse> add(@RequestBody CompanyEntityRequest companyEntityRequest) {
+		return new ResponseEntity<CompanyEntityResponse>(companyEntityService.add(companyEntityRequest), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<CompanyEntity> update(@PathVariable Integer id, @RequestBody CompanyEntity companyEntity) {
-		companyEntity.setId(id);
-		return new ResponseEntity<CompanyEntity>(companyEntityService.update(id,companyEntity), HttpStatus.OK);
+	public ResponseEntity<CompanyEntityResponse> update(@PathVariable Integer id, @RequestBody CompanyEntityRequest companyEntityRequest) {
+		return new ResponseEntity<CompanyEntityResponse>(companyEntityService.update(id,companyEntityRequest), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")

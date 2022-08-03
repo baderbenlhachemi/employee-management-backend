@@ -13,6 +13,5 @@ public interface CompanyMapper {
     CompanyMapper MAPPER = Mappers.getMapper(CompanyMapper.class);
     Company fromRequestToEntity(CompanyRequest companyRequest);
     CompanyResponse fromEntityToResponse(Company company);
-
     List<CompanyResponse> fromEntityListToResponse(List<Company> companies);
 }
