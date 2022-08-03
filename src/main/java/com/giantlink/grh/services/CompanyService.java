@@ -2,17 +2,19 @@ package com.giantlink.grh.services;
 
 import java.util.List;
 
+import com.giantlink.grh.dto.request.CompanyRequest;
+import com.giantlink.grh.dto.response.CompanyResponse;
 import com.giantlink.grh.entities.Company;
 
 public interface CompanyService {
 
-	Company add(Company company);
+	CompanyResponse add(CompanyRequest companyRequest);
 
-	Company update(Integer id, Company company);
+	CompanyResponse update(Integer id, CompanyRequest companyRequest);
 
-	Company get(Integer id);
+	CompanyResponse get(Integer id);
 
-	List<Company> get();
+	List<CompanyResponse> get();
 
 	void delete(Integer id);
 }
