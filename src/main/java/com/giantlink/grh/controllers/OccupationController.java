@@ -39,7 +39,7 @@ private final OccupationService occupationService;
     @PutMapping("/update/{id}")
     public Occupation update(@PathVariable Integer id, @RequestBody Occupation occupation) {
         occupation.setId(id);
-        return occupationService.add(occupation);
+        return occupationService.update(id, occupation);
     }
 
     @DeleteMapping("/delete/{id}")

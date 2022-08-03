@@ -36,7 +36,7 @@ public class DepartementController {
     @PutMapping("/update/{id}")
     public Departement update(@PathVariable Integer id, @RequestBody Departement departement) {
         departement.setId(id);
-        return departementService.add(departement);
+        return departementService.update(id, departement);
     }
 
     @DeleteMapping("/delete/{id}")

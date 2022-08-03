@@ -24,6 +24,11 @@ public class CompanyEntityServiceImpl implements CompanyEntityService {
 	}
 
 	@Override
+	public CompanyEntity update(Integer id, CompanyEntity companyEntity) {
+		return companyEntityRepository.save(companyEntity);
+	}
+
+	@Override
 	public CompanyEntity get(Integer id) {
 		// TODO Auto-generated method stub
 		return companyEntityRepository.findById(id).get();

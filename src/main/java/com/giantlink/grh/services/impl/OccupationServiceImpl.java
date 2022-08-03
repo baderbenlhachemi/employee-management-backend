@@ -24,6 +24,11 @@ public class OccupationServiceImpl implements OccupationService {
     }
 
     @Override
+    public Occupation update(Integer id, Occupation occupation) {
+        return occupationRepository.save(occupation);
+    }
+
+    @Override
     public Occupation get(Integer id) {
         return occupationRepository.findById(id).get();
     }

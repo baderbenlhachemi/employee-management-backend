@@ -8,6 +8,8 @@ public interface CompanyService {
 
 	Company add(Company company);
 
+	Company update(Integer id, Company company);
+
 	Company get(Integer id);
 
 	List<Company> get();

@@ -26,6 +26,11 @@ public class DepartementServiceImpl implements DepartementService {
 	}
 
 	@Override
+	public Departement update(Integer id, Departement departement) {
+		return departementRepository.save(departement);
+	}
+
+	@Override
 	public Departement get(Integer id) {
 		// TODO Auto-generated method stub
 		return departementRepository.findById(id).get();

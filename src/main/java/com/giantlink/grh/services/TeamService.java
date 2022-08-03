@@ -8,6 +8,8 @@ public interface TeamService {
 
     Team add(Team team);
 
+    Team update(Integer id, Team team);
+
     Team get(Integer id);
 
     Team get(String name);

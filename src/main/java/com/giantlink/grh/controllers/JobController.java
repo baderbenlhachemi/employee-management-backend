@@ -36,7 +36,7 @@ public Job get(@PathVariable Integer id) {
     @PutMapping("/update/{id}")
     public Job update(@PathVariable Integer id, @RequestBody Job job) {
         job.setId(id);
-        return jobService.add(job);
+        return jobService.update(id, job);
     }
 
     @DeleteMapping("/delete/{id}")

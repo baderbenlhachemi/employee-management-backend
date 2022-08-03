@@ -39,7 +39,7 @@ public class CompanyEntityController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<CompanyEntity> update(@PathVariable Integer id, @RequestBody CompanyEntity companyEntity) {
 		companyEntity.setId(id);
-		return new ResponseEntity<CompanyEntity>(companyEntityService.add(companyEntity), HttpStatus.OK);
+		return new ResponseEntity<CompanyEntity>(companyEntityService.update(id,companyEntity), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")

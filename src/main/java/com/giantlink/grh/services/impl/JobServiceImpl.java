@@ -24,6 +24,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public Job update(Integer id, Job job) {
+        return jobRepository.save(job);
+    }
+
+    @Override
     public Job get(Integer id) {
         return jobRepository.findById(id).get();
     }

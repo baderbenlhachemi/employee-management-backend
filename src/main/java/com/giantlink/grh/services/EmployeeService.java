@@ -8,6 +8,8 @@ public interface EmployeeService {
 
     Employee add(Employee employee);
 
+    Employee update(Integer id, Employee employee);
+
     Employee get(Integer id);
 
     Employee get(String name);

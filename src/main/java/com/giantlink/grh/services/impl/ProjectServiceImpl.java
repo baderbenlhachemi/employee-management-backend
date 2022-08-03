@@ -25,6 +25,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public Project update(Integer id, Project project) {
+        return projectRepository.save(project);
+    }
+
+    @Override
     public Project get(Integer id) {
         return projectRepository.findById(id).get();
     }

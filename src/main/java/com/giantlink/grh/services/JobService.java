@@ -8,6 +8,8 @@ public interface JobService {
 
     Job add(Job job);
 
+    Job update(Integer id, Job job);
+
     Job get(Integer id);
 
     Job get(String name);

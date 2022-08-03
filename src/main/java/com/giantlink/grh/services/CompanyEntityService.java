@@ -7,6 +7,8 @@ import com.giantlink.grh.entities.CompanyEntity;
 public interface CompanyEntityService {
 	CompanyEntity add(CompanyEntity companyEntity);
 
+	CompanyEntity update(Integer id, CompanyEntity companyEntity);
+
 	CompanyEntity get(Integer id);
 
 	List<CompanyEntity> get();

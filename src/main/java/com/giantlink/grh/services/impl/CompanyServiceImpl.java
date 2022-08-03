@@ -24,6 +24,12 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
+	public Company update(Integer id, Company company) {
+		company.setId(id);
+		return companyRepository.save(company);
+	}
+
+	@Override
 	public Company get(Integer id) {
 		return companyRepository.findById(id).get();
 	}

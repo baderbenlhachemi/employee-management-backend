@@ -36,7 +36,7 @@ public class TeamController {
     @PutMapping("/update/{id}")
     public Team update(@PathVariable Integer id, @RequestBody Team team) {
         team.setId(id);
-        return teamService.add(team);
+        return teamService.update(id, team);
     }
 
     @DeleteMapping("/delete/{id}")
