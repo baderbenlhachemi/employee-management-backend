@@ -7,15 +7,14 @@ import lombok.Setter;
 
 import java.util.Set;
 
+
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyResponse {
+public class TeamResponse {
     private Integer id;
     private String name;
-    private String email;
-    private String address;
 
-    Set<CompanyEntityResponse> entities;
+    Set<EmployeeResponse> teams;
 }

@@ -1,21 +1,23 @@
 package com.giantlink.grh.services;
 
+import com.giantlink.grh.dto.request.ProjectRequest;
+import com.giantlink.grh.dto.response.ProjectResponse;
 import com.giantlink.grh.entities.Project;
 
 import java.util.List;
 
 public interface ProjectService {
 
-    Project add(Project project);
+    ProjectResponse add(ProjectRequest projectRequest);
 
-    Project update(Integer id, Project project);
+    ProjectResponse update(Integer id, ProjectRequest projectRequest);
 
-    Project get(Integer id);
+    ProjectResponse get(Integer id);
 
-    Project get(String name);
-
-    List<Project> get();
+    List<ProjectResponse> get();
 
     void delete(Integer id);
+
+    ProjectResponse getByName(String name);
 
 }

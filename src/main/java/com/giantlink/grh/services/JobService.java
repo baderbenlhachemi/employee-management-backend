@@ -1,20 +1,22 @@
 package com.giantlink.grh.services;
 
+import com.giantlink.grh.dto.request.JobRequest;
+import com.giantlink.grh.dto.response.JobResponse;
 import com.giantlink.grh.entities.Job;
 
 import java.util.List;
 
 public interface JobService {
 
-    Job add(Job job);
+    JobResponse add(JobRequest jobRequest);
 
-    Job update(Integer id, Job job);
+    JobResponse update(Integer id, JobRequest jobrequest);
 
-    Job get(Integer id);
+    JobResponse get(Integer id);
 
-    Job get(String name);
+    JobResponse get(String name);
 
-    List<Job> get();
+    List<JobResponse> get();
 
     void delete(Integer id);
 

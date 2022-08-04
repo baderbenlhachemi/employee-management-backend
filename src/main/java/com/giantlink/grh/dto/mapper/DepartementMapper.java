@@ -15,7 +15,4 @@ public interface DepartementMapper {
     Departement fromRequestToEntity(DepartementRequest departementRequest);
     DepartementResponse fromEntityToResponse(Departement departement);
     List<DepartementResponse> fromEntityListToResponse(List<Departement> departements);
-
-    /*@Mapping(source = "teams" , target = "teams")
-    DepartementResponse departementToResponse(Departement departement);*/
 }

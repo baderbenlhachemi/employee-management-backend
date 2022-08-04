@@ -1,8 +1,12 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.TeamRequest;
+import com.giantlink.grh.dto.response.TeamResponse;
 import com.giantlink.grh.entities.Team;
 import com.giantlink.grh.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,24 +23,23 @@ public class TeamController {
     }
 
     @GetMapping("")
-    public List<Team> get() {
-        return teamService.get();
+    public ResponseEntity<List<TeamResponse>> get() {
+        return new ResponseEntity<List<TeamResponse>>(teamService.get(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public Team get(@PathVariable Integer id) {
-        return teamService.get(id);
+    public ResponseEntity<TeamResponse> get(@PathVariable Integer id) {
+        return new ResponseEntity<TeamResponse>(teamService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Team add(@RequestBody Team team) {
-        return teamService.add(team);
+    public ResponseEntity<TeamResponse> add(@RequestBody TeamRequest teamRequest) {
+        return new ResponseEntity<TeamResponse>(teamService.add(teamRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public Team update(@PathVariable Integer id, @RequestBody Team team) {
-        team.setId(id);
-        return teamService.update(id, team);
+    public ResponseEntity<TeamResponse> update(@PathVariable Integer id, @RequestBody TeamRequest teamRequest) {
+        return new ResponseEntity<TeamResponse>(teamService.update(id, teamRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

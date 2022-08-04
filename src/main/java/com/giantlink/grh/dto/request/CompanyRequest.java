@@ -14,6 +14,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 public class CompanyRequest {
     @NotNull
+    @Size(min = 3, max = 20)
     private String name;
     @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
     private String email;

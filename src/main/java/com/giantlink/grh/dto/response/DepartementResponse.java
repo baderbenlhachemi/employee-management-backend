@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -16,5 +17,6 @@ public class DepartementResponse {
     private String name;
     private Date timestamp;
 
-    //private Set<TeamResponse> teams;
+    Set<TeamResponse> teams;
+    Set<EmployeeResponse> employees;
 }

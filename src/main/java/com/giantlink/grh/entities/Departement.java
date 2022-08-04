@@ -16,7 +16,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "tbl_entity_departement")
+@Table(name = "tbl_departement")
 @Setter
 @Getter
 @NoArgsConstructor

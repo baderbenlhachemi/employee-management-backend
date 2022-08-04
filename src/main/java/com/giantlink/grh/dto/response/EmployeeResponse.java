@@ -11,11 +11,9 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyResponse {
+public class EmployeeResponse {
     private Integer id;
     private String name;
-    private String email;
-    private String address;
 
-    Set<CompanyEntityResponse> entities;
+    Set<OccupationResponse> occupations;
 }

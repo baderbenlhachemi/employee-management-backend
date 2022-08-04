@@ -1,8 +1,12 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.ProjectRequest;
+import com.giantlink.grh.dto.response.ProjectResponse;
 import com.giantlink.grh.entities.Project;
 import com.giantlink.grh.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,29 +23,28 @@ public class ProjectController {
     }
 
     @GetMapping("")
-    public List<Project> get() {
+    public List<ProjectResponse> get() {
         return projectService.get();
     }
 
     @GetMapping("/get/{id}")
-    public Project get(@PathVariable Integer id) {
-        return projectService.get(id);
+    public ResponseEntity<ProjectResponse> get(@PathVariable Integer id) {
+        return new ResponseEntity<ProjectResponse>(projectService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/getname/{name}")
-    public Project get(@PathVariable String name) {
-        return projectService.get(name);
+    public ResponseEntity<ProjectResponse> getByName(@PathVariable String name) {
+        return new ResponseEntity<ProjectResponse>(projectService.getByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Project add(@RequestBody Project project) {
-        return projectService.add(project);
+    public ResponseEntity<ProjectResponse> add(@RequestBody ProjectRequest projectRequest) {
+        return new ResponseEntity<ProjectResponse>(projectService.add(projectRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public Project update(@PathVariable Integer id, @RequestBody Project project) {
-        project.setId(id);
-        return projectService.update(id, project);
+    public ResponseEntity<ProjectResponse> update(@PathVariable Integer id, @RequestBody ProjectRequest projectRequest) {
+        return new ResponseEntity<ProjectResponse>(projectService.update(id, projectRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -1,7 +1,11 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.OccupationRequest;
+import com.giantlink.grh.dto.response.OccupationResponse;
 import com.giantlink.grh.entities.Occupation;
 import com.giantlink.grh.services.OccupationService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,29 +21,28 @@ private final OccupationService occupationService;
     }
 
     @GetMapping("")
-    public List<Occupation> get() {
-        return occupationService.get();
+    public ResponseEntity<List<OccupationResponse>> get() {
+        return new ResponseEntity<List<OccupationResponse>>(occupationService.get(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public Occupation get(@PathVariable Integer id) {
-        return occupationService.get(id);
+    public ResponseEntity<OccupationResponse> get(@PathVariable Integer id) {
+        return new ResponseEntity<OccupationResponse>(occupationService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/getname/{name}")
-    public Occupation get(@PathVariable String name) {
-        return occupationService.get(name);
+    public ResponseEntity<OccupationResponse> getByName(@PathVariable String name) {
+        return new ResponseEntity<OccupationResponse>(occupationService.getByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Occupation add(@RequestBody Occupation occupation) {
-        return occupationService.add(occupation);
+    public ResponseEntity<OccupationResponse> add(@RequestBody OccupationRequest occupationRequest) {
+        return new ResponseEntity<OccupationResponse>(occupationService.add(occupationRequest), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public Occupation update(@PathVariable Integer id, @RequestBody Occupation occupation) {
-        occupation.setId(id);
-        return occupationService.update(id, occupation);
+    public ResponseEntity<OccupationResponse> update(@PathVariable Integer id, @RequestBody OccupationRequest occupationRequest) {
+        return new ResponseEntity<OccupationResponse>(occupationService.update(id, occupationRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

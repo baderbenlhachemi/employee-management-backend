@@ -1,6 +1,5 @@
 package com.giantlink.grh.dto.request;
 
-import com.giantlink.grh.entities.Company;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +12,9 @@ import javax.validation.constraints.Size;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyEntityRequest {
+public class ProjectRequest {
     @NotNull
     @Size(min = 3, max = 20)
     private String name;
 
-    @NotNull
-    private Company company;
 }

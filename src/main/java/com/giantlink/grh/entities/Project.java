@@ -19,7 +19,7 @@ public class Project {
     private Integer id;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "job-project")
     private Set<Job> jobs;
 }

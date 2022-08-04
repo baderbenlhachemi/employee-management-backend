@@ -13,6 +13,9 @@ import com.giantlink.grh.entities.Company;
 import com.giantlink.grh.repositories.CompanyRepository;
 import com.giantlink.grh.services.CompanyService;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
 	private final CompanyRepository companyRepository;
@@ -47,6 +50,11 @@ public class CompanyServiceImpl implements CompanyService {
 	public CompanyResponse get(Integer id) {
 		Optional<Company> company = companyRepository.findById(id);
 		return CompanyMapper.MAPPER.fromEntityToResponse(company.get());
+	}
+
+	@Override
+	public CompanyResponse getByName(String name) {
+		return CompanyMapper.MAPPER.fromEntityToResponse(companyRepository.findByName(name));
 	}
 
 	@Override

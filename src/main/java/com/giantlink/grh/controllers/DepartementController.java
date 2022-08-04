@@ -5,6 +5,8 @@ import com.giantlink.grh.dto.response.DepartementResponse;
 import com.giantlink.grh.entities.Departement;
 import com.giantlink.grh.services.DepartementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,23 +23,23 @@ public class DepartementController {
     }
 
     @GetMapping("")
-    public List<DepartementResponse> get() {
-        return departementService.get();
+    public ResponseEntity<List<DepartementResponse>> get() {
+        return new ResponseEntity<List<DepartementResponse>>(departementService.get(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public DepartementResponse get(@PathVariable Integer id) {
-        return departementService.get(id);
+    public ResponseEntity<DepartementResponse> get(@PathVariable Integer id) {
+        return new ResponseEntity<DepartementResponse>(departementService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public DepartementResponse add(@RequestBody DepartementRequest departementRequest) {
-        return departementService.add(departementRequest);
+    public ResponseEntity<DepartementResponse> add(@RequestBody DepartementRequest departementRequest) {
+        return new ResponseEntity<DepartementResponse>(departementService.add(departementRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public DepartementResponse update(@PathVariable Integer id, @RequestBody DepartementRequest departementRequest) {
-        return departementService.update(id, departementRequest);
+    public ResponseEntity<DepartementResponse> update(@PathVariable Integer id, @RequestBody DepartementRequest departementRequest) {
+        return new ResponseEntity<DepartementResponse>(departementService.update(id, departementRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

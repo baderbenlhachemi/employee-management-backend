@@ -1,20 +1,22 @@
 package com.giantlink.grh.services;
 
+import com.giantlink.grh.dto.request.TeamRequest;
+import com.giantlink.grh.dto.response.TeamResponse;
 import com.giantlink.grh.entities.Team;
 
 import java.util.List;
 
 public interface TeamService {
 
-    Team add(Team team);
+    TeamResponse add(TeamRequest teamRequest);
 
-    Team update(Integer id, Team team);
+    TeamResponse update(Integer id, TeamRequest teamRequest);
 
-    Team get(Integer id);
+    TeamResponse get(Integer id);
 
-    Team get(String name);
+    TeamResponse get(String name);
 
-    List<Team> get();
+    List<TeamResponse> get();
 
     void delete(Integer id);
 

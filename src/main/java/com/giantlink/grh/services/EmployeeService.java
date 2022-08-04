@@ -1,21 +1,22 @@
 package com.giantlink.grh.services;
 
-import com.giantlink.grh.entities.Employee;
+import com.giantlink.grh.dto.request.EmployeeRequest;
+import com.giantlink.grh.dto.response.EmployeeResponse;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
 
-    Employee add(Employee employee);
+    EmployeeResponse add(EmployeeRequest employeeRequest);
 
-    Employee update(Integer id, Employee employee);
+    EmployeeResponse update(Integer id, EmployeeRequest employeeRequest);
 
-    Employee get(Integer id);
+    EmployeeResponse get(Integer id);
 
-    Employee get(String name);
-
-    List<Employee> get();
+    List<EmployeeResponse> get();
 
     void delete(Integer id);
 
+    EmployeeResponse getByName(String name);
 }

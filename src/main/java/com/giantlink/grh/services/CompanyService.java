@@ -14,6 +14,8 @@ public interface CompanyService {
 
 	CompanyResponse get(Integer id);
 
+	CompanyResponse getByName(String name);
+
 	List<CompanyResponse> get();
 
 	void delete(Integer id);

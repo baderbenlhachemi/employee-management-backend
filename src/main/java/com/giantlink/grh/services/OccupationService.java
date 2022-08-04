@@ -1,21 +1,22 @@
 package com.giantlink.grh.services;
 
+import com.giantlink.grh.dto.request.OccupationRequest;
+import com.giantlink.grh.dto.response.OccupationResponse;
 import com.giantlink.grh.entities.Occupation;
 
 import java.util.List;
 
 public interface OccupationService {
 
-    Occupation add(Occupation occupation);
+    OccupationResponse add(OccupationRequest occupationRequest);
 
-    Occupation update(Integer id, Occupation occupation);
+    OccupationResponse update(Integer id, OccupationRequest occupationRequest);
 
-    Occupation get(Integer id);
+    OccupationResponse get(Integer id);
 
-    Occupation get(String name);
-
-    List<Occupation> get();
+    List<OccupationResponse> get();
 
     void delete(Integer id);
 
+    OccupationResponse getByName(String name);
 }

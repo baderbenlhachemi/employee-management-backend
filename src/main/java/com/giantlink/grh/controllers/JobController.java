@@ -1,8 +1,12 @@
 package com.giantlink.grh.controllers;
 
+import com.giantlink.grh.dto.request.JobRequest;
+import com.giantlink.grh.dto.response.JobResponse;
 import com.giantlink.grh.entities.Job;
 import com.giantlink.grh.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,24 +23,23 @@ public class JobController {
     }
 
     @GetMapping("")
-    public List<Job> get() {
+    public List<JobResponse> get() {
         return jobService.get();
     }
 
     @GetMapping("/get/{id}")
-public Job get(@PathVariable Integer id) {
-        return jobService.get(id);
+    public ResponseEntity<JobResponse> get(@PathVariable Integer id) {
+        return new ResponseEntity<JobResponse>(jobService.get(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public Job add(@RequestBody Job job) {
-        return jobService.add(job);
+    public ResponseEntity<JobResponse> add(@RequestBody JobRequest jobRequest) {
+        return new ResponseEntity<JobResponse>(jobService.add(jobRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public Job update(@PathVariable Integer id, @RequestBody Job job) {
-        job.setId(id);
-        return jobService.update(id, job);
+    public ResponseEntity<JobResponse> update(@PathVariable Integer id, @RequestBody JobRequest jobRequest) {
+        return new ResponseEntity<JobResponse>(jobService.update(id, jobRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
