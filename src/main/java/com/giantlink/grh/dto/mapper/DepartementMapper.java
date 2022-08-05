@@ -4,7 +4,6 @@ import com.giantlink.grh.dto.request.DepartementRequest;
 import com.giantlink.grh.dto.response.DepartementResponse;
 import com.giantlink.grh.entities.Departement;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

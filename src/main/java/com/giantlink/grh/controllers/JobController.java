@@ -2,13 +2,15 @@ package com.giantlink.grh.controllers;
 
 import com.giantlink.grh.dto.request.JobRequest;
 import com.giantlink.grh.dto.response.JobResponse;
-import com.giantlink.grh.entities.Job;
+import com.giantlink.grh.exceptions.AlreadyExistsException;
+import com.giantlink.grh.exceptions.NotFoundException;
 import com.giantlink.grh.services.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,27 +25,32 @@ public class JobController {
     }
 
     @GetMapping("")
-    public List<JobResponse> get() {
+    public List<JobResponse> get() throws NotFoundException {
         return jobService.get();
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<JobResponse> get(@PathVariable Integer id) {
+    public ResponseEntity<JobResponse> get(@PathVariable Integer id) throws NotFoundException {
         return new ResponseEntity<JobResponse>(jobService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getname/{name}")
+    public ResponseEntity<JobResponse> getByName(@PathVariable String name) throws NotFoundException {
+        return new ResponseEntity<JobResponse>(jobService.getByName(name), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
-    public ResponseEntity<JobResponse> add(@RequestBody JobRequest jobRequest) {
+    public ResponseEntity<JobResponse> add(@RequestBody @Valid JobRequest jobRequest) throws AlreadyExistsException {
         return new ResponseEntity<JobResponse>(jobService.add(jobRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<JobResponse> update(@PathVariable Integer id, @RequestBody JobRequest jobRequest) {
+    public ResponseEntity<JobResponse> update(@PathVariable Integer id, @RequestBody @Valid JobRequest jobRequest) throws AlreadyExistsException, NotFoundException {
         return new ResponseEntity<JobResponse>(jobService.update(id, jobRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Integer id) throws NotFoundException {
         jobService.delete(id);
     }
 

@@ -7,4 +7,5 @@ import com.giantlink.grh.entities.CompanyEntity;
 
 @Repository
 public interface CompanyEntityRepository extends JpaRepository<CompanyEntity, Integer> {
+    CompanyEntity findByName(String name);
 }

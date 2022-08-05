@@ -2,13 +2,15 @@ package com.giantlink.grh.controllers;
 
 import com.giantlink.grh.dto.request.TeamRequest;
 import com.giantlink.grh.dto.response.TeamResponse;
-import com.giantlink.grh.entities.Team;
+import com.giantlink.grh.exceptions.AlreadyExistsException;
+import com.giantlink.grh.exceptions.NotFoundException;
 import com.giantlink.grh.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,27 +25,32 @@ public class TeamController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<TeamResponse>> get() {
+    public ResponseEntity<List<TeamResponse>> get() throws NotFoundException {
         return new ResponseEntity<List<TeamResponse>>(teamService.get(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<TeamResponse> get(@PathVariable Integer id) {
+    public ResponseEntity<TeamResponse> get(@PathVariable Integer id) throws NotFoundException {
         return new ResponseEntity<TeamResponse>(teamService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getname/{name}")
+    public ResponseEntity<TeamResponse> getByName(@PathVariable String name) throws NotFoundException {
+        return new ResponseEntity<TeamResponse>(teamService.getByName(name), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
-    public ResponseEntity<TeamResponse> add(@RequestBody TeamRequest teamRequest) {
+    public ResponseEntity<TeamResponse> add(@RequestBody @Valid TeamRequest teamRequest) throws AlreadyExistsException {
         return new ResponseEntity<TeamResponse>(teamService.add(teamRequest), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<TeamResponse> update(@PathVariable Integer id, @RequestBody TeamRequest teamRequest) {
+    public ResponseEntity<TeamResponse> update(@PathVariable Integer id, @RequestBody @Valid TeamRequest teamRequest) throws NotFoundException, AlreadyExistsException {
         return new ResponseEntity<TeamResponse>(teamService.update(id, teamRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Integer id) throws NotFoundException {
         teamService.delete(id);
     }
 
