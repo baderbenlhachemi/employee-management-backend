@@ -1,9 +1,6 @@
 package com.giantlink.grh;
 
-import com.giantlink.grh.entities.ERole;
-import com.giantlink.grh.entities.Role;
 import com.giantlink.grh.repositories.CompanyRepository;
-import com.giantlink.grh.repositories.RoleRepository;
 import com.giantlink.grh.services.CompanyImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,9 +24,6 @@ public class EmployeeManagementApplication implements CommandLineRunner {
 	@Autowired
 	CompanyRepository companyRepository;
 
-	@Autowired
-	RoleRepository roleRepository;
-
 
 
 	public static void main(String[] args) {
@@ -45,16 +39,6 @@ public class EmployeeManagementApplication implements CommandLineRunner {
 //		Company build = Company.builder().name("GIANTLINK").email("contact@giantlink.fr").address("FRANCE").build();
 //		companyService.add(build);
 //		companyService.add(build2);
-
-
-		// roles
-
-/*		roleRepository.deleteAll();
-
-		roleRepository.save(new Role(ERole.ROLE_ADMIN));
-		roleRepository.save(new Role(ERole.ROLE_USER));
-		roleRepository.save(new Role(ERole.ROLE_MODERATOR));*/
-
 
 	}
 
