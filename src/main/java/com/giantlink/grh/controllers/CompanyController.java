@@ -25,6 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.giantlink.grh.services.CompanyService;
 import org.springframework.web.multipart.MultipartFile;
@@ -118,13 +119,11 @@ public class CompanyController {
 
 	// page=1&size=3
 	@GetMapping("/getPage/{page}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Page<Company>> get(@RequestParam(name = "page", defaultValue = "0") int page,
 											 @RequestParam(name = "size", defaultValue = "3") int size) {
 		Pageable pageable = PageRequest.of(page, size);
 
 		return new ResponseEntity<Page<Company>>(companyService.get(pageable), HttpStatus.OK);
 	}
-
-
-
 }
