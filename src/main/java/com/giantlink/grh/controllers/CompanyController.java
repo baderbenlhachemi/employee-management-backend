@@ -119,7 +119,7 @@ public class CompanyController {
 
 	// page=1&size=3
 	@GetMapping("/getPage/{page}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
 	public ResponseEntity<Page<Company>> get(@RequestParam(name = "page", defaultValue = "0") int page,
 											 @RequestParam(name = "size", defaultValue = "3") int size) {
 		Pageable pageable = PageRequest.of(page, size);
