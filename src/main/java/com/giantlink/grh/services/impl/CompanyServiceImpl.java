@@ -9,6 +9,8 @@ import com.giantlink.grh.dto.response.CompanyResponse;
 import com.giantlink.grh.exceptions.AlreadyExistsException;
 import com.giantlink.grh.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.giantlink.grh.entities.Company;
@@ -38,10 +40,14 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	public CompanyResponse update(Integer id, CompanyRequest companyRequest) throws AlreadyExistsException, NotFoundException {
 		Company company = companyRepository.findById(id).orElseThrow(() -> new NotFoundException("Company not found"));
+
 		Company newCompany = CompanyMapper.MAPPER.fromRequestToEntity(companyRequest);
 		company.setName(newCompany.getName());
 		company.setEmail(newCompany.getEmail());
 		company.setAddress(newCompany.getAddress());
+		company.setPhone(newCompany.getPhone());
+		company.setWebsite(newCompany.getWebsite());
+		company.setDescription(newCompany.getDescription());
 		companyRepository.save(company);
 		return CompanyMapper.MAPPER.fromEntityToResponse(company);
 	}
@@ -71,6 +77,11 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		List<Company> company = companyRepository.findAll();
 		return CompanyMapper.MAPPER.fromEntityListToResponse(company);
+	}
+
+	@Override
+	public Page<Company> get(Pageable pageable) {
+		return companyRepository.findAll(pageable);
 	}
 
 	@Override

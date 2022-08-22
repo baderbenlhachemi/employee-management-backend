@@ -17,6 +17,6 @@ public interface DepartementService {
 	DepartementResponse getByName(String name) throws NotFoundException;
 
 	List<DepartementResponse> get() throws NotFoundException;
-	
+
 	void delete(Integer id) throws NotFoundException;
 }
