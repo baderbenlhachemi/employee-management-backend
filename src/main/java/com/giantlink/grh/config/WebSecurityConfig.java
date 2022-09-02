@@ -62,7 +62,7 @@ public class WebSecurityConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("*"));
+        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200/"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
@@ -70,6 +70,5 @@ public class WebSecurityConfig {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
     }
-
 
 }
